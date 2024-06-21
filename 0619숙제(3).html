@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 확인</title>
+</head>
+<body>
+    <h1>날씨 확인</h1>
+    <label>계절</label>
+    <input type="radio" name="season" id="spring" value="1">
+    <label for="spring">봄</label>
+    <input type="radio" name="season" id="summer" value="2">
+    <label for="summer">여름</label>
+    <input type="radio" name="season" id="fall" value="3">
+    <label for="fall">가을</label>
+    <input type="radio" name="season" id="winter" value="4">
+    <label for="winter">겨울</label><br>
+    <label for="temp">기온</label>
+    <input type="number" id="temp">
+    <button onclick="weather();">확인</button>
+    <script>
+        function weather(){
+            let weathercode = document.getElementsByName('season');
+            let checkedvalue;
+            for(let i=0;i<weathercode.length;i++){
+                if(weathercode[i].checked){
+                    checkedvalue=weathercode[i].value;
+                }
+            }
+            let temper=document.getElementById('temp').value;
+            temper=Number(temper);
+            if(checkedvalue==2){
+                if(temper>=35){
+                    alert('폭염 경보');
+                }else if(temper>=33){
+                    alert('폭염 주의보');
+                }
+            }else if(checkedvalue==4){
+                if(temper<=-15){
+                    alert('한파 경보');
+                }else if(temper<=-12){
+                    alert('한파 주의보');
+                }
+            }
+
+        }
+    </script>
+    <h1>스폰지밥, 뚱이, 징징이</h1>
+    <select id="choice" onchange="changepic();">
+        <option value="1">스폰지밥</option>
+        <option value="2">뚱이</option>
+        <option value="3">징징이</option>
+    </select>
+    <div id="sectchbook" style="width: 200px; height: 200px;"></div>
+    
+    
+    
+    <script>
+        function changepic(){
+            let ch = document.getElementById('choice').value;
+            ch=Number(ch);
+            switch(ch){
+                case 1: document.getElementById('sectchbook').innerHTML = '<img src="../resources/sponge.png">';break;
+                case 2: document.getElementById('sectchbook').innerHTML = '<img src="../resources/dung.png">';break;
+                case 3: document.getElementById('sectchbook').innerHTML = '<img src="../resources/jing.png">';break;
+            }
+        }
+    </script>
+
+    <h1>CGV 팝콘 사세요!</h1>
+    <label for="inp">구매할 세트 개수 : </label>
+    <input type="number" id="inp">
+    <button onclick="pop();">확인</button>
+    <div id="popOut"></div>
+    
+    
+    <script>
+        function pop(){
+            let amount = document.getElementById('inp').value;
+            console.log(amount);
+            for(let x=0;x<amount;x++){
+                document.getElementById('popOut').innerHTML+='<img src="../resources/popcorn.png">';
+                for(let y=0;y<2;y++){
+                    document.getElementById('popOut').innerHTML+='<img src="../resources/cola.png">';
+                }
+                document.getElementById('popOut').innerHTML+='<br>';
+            }
+        }
+    </script>
+</body>
+</html>

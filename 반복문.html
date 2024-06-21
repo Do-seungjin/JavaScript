@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문</title>
+</head>
+<body>
+    <h1>for문</h1>
+    <input type="button" value="반복" onclick="loopFunc();">
+    <div id="result_div"></div>
+    <script>
+        function loopFunc(){
+            let resultDiv = document.getElementById('result_div');
+            for(let i=0;i<10;i++){
+                resultDiv.innerHTML+='<h6>안녕하세요</h6>';
+            }
+        }
+    </script>
+    <h1>중첩 for 문</h1>
+    <button onclick="doubleFunc();">동작</button>
+    <script>
+        function doubleFunc(){
+            for(let i=0;i<2;i++){
+                console.log('=== 교실'+(i+1)+' 문열기 ===');
+                for(let u=0;u<3;u++){
+                    console.log('학생'+(u+1)+'번 입장');
+                }
+                console.log('=== 교실 문 닫기===')
+            }
+        }
+    </script>
+    <h1>배경추가</h1>
+    <button onclick="changeBack();">다 돌려놔</button><br><br><br><br>
+    <label for="hol">홀수 색상 : </label>
+    <input type="color" id="hol">
+    <label for="jack">짝수 색상 : </label>
+    <input type="color" id="jack">
+    <br>
+    <button onclick="changeInput();">입력받아서 돌려놔</button>
+    <script>
+        function changeBack(){
+            let hcol = document.getElementsByTagName('h1');
+            for(var i=0; i<3 ; i++){
+                if(i%2==0){
+                    hcol[i].style.backgroundColor='lightpink';
+                }else {
+                    hcol[i].style.backgroundColor = 'lightblue';
+                }
+            }
+        }
+
+        function changeInput(){
+            let hcol2 = document.getElementsByTagName('h1');
+            let holll=document.getElementById('hol').value;
+            let jackkk=document.getElementById('jack').value;
+            for(var i=0; i<3 ; i++){
+                if(i%2==0){
+                    hcol2[i].style.backgroundColor=holll;
+                }else {
+                    hcol2[i].style.backgroundColor = jackkk;
+                }
+            }
+        }
+    </script>
+    <h1>중첩 반복문 -> break</h1>
+    <button onclick="breakFunc();">기능 동작</button>
+    <script>
+        function breakFunc(){
+            // 1. 내부 for문 안에 break
+            for(let i=1;i<=3;i++){
+                console.log(1);
+                for(let j=1;j<=2;j++){
+                    console.log(2);
+                    // break;
+                }
+                console.log(3);
+                break;
+            }
+        }
+    </script>
+
+    <h1>면도기 생산</h1>
+    <label for="gesu">생산 개수 : </label>
+    <input type="number" id="gesu">
+    <button onclick="producing();">생산</button>
+    
+    <div id="output"></div>
+    
+    <script>
+        function producing(){
+            let su = document.getElementById('gesu').value;
+            console.log(su);
+            for(let i=1;i<=su;i++){
+                document.getElementById('output').innerHTML+='<img src="../resources/shaving.png.png">';
+                for(let j=1;j<=2;j++){
+                    var foam=document.getElementById('output').innerHTML+='<img src="../resources/knife.png.png">';
+                }
+                var kal= document.getElementById('output').innerHTML+='<br>';
+            }
+        }
+    </script>
+    <h1>while문</h1>
+    <button onclick="whileFunc();">동작</button>
+    <script>
+        function whileFunc(){
+            let b=10;
+            // while(b>=5){
+            //     console.log(b);
+            //     b--;
+            // }
+            
+            // if문 (조건문)과 함께 사용
+            // while(b>=5){
+            //     if(b%2==0){
+            //         console.log('짝수');
+            //     }else{
+            //         console.log('홀수');
+            //     }
+            //     b--;
+            // }
+
+            // break 사용
+            while(true){
+                console.log(b);
+                b--;
+                if(b==4){
+                    break;
+                }
+            }
+        }
+    </script>
+    
+    <h1>귤농장</h1>
+    <button onclick="farm();">체험시작</button>
+    <div id="outLine"></div>
+    <script>
+        function farm(){
+            let amount=0;
+            document.getElementById('outLine').innerHTML=''
+            while(true){
+                amount+=10;
+            document.getElementById('outLine').innerHTML+='<div style="display: inline-block;">귤 '+amount+'g<img src="../resources/gul.png.png"></div>';
+            if(amount==200){document.getElementById('outLine').innerHTML+='<h1>체험 종료</h1>'; break;}
+        }          
+        }
+    </script>
+
+    <h1>do~while문</h1>
+    <button onclick="doWhileFunc();">연습</button>
+    <script>
+        function doWhileFunc(){
+            let count = 10;
+            while(0<count&&count<10){
+                console.log(count+": 출력");
+                count--;
+            }
+            do{
+                console.log(count+": 출력");
+                count--;
+            }while(0<count&&count<10);
+        }
+    </script>
+
+    <h1>doWhile연습</h1>
+    <input type="number" id="num">
+    <button onclick="plpl();">실행</button>
+    <div id="re"></div>
+    <script>
+        function plpl(){
+            let ans = document.getElementById('num').value;
+            document.getElementById('re').innerHTML='';
+            ans = Number(ans);
+            do{
+                document.getElementById('re').innerHTML+=ans+' ';
+                ans++;
+            }while(ans<=10);
+
+        }
+    </script>
+    
+    <h1>continue</h1>
+    <button onclick="continueFunc();">연습</button>
+    <script>
+        function continueFunc(){
+            // for문에서 continue -> 증감식으로 이동
+            for(let i=1;i<=10;i++){
+                // 홀수만 출력
+                // if(i%2==1){
+                //     console.log(i+': 출력');
+                // }
+                // 짝수일때 Skip
+                if(i%2==0){
+                    continue;
+                }
+                console.log(i+': 출력');
+            }
+            // while문에서 continue -> 조건식으로 이동
+            let j=0;
+            while(j<10){
+                j++;
+                if(j%2==0) {continue;}
+                console.log(j+': 출력(2)');
+            }
+        }
+    </script>
+</body>
+</html>

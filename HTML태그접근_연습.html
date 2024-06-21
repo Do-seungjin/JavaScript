@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그 접근 연습</title>
+    <style>
+        #q1{width: 100px; height: 100px; background-color: black;}
+        #q2{width: 100px; height: 100px; background-color: black;}
+    </style>
+</head>
+<body>
+    <h1>문제1. 색상 선택 후 변경 버튼을 클릭하면 색상이 변경되도록 만들어보세요.</h1>
+    <input type="color" name="choice" id="choice">
+    <button type="button" id="apply" onclick="changeColor();">변경</button><br><br>
+    <div id="q1"></div>
+    <script>
+        function changeColor(){
+            // 입력한 색상 가져오기
+            var getColor = document.getElementById('choice').value;
+            console.log(getColor);
+            // 가져온 색상 입히기
+            var setColor = document.getElementById('q1');
+            setColor.style.backgroundColor=getColor;
+        }
+    </script>
+    
+    <h1>문제2. 버튼에 따른 크기 조절이 가능하도록 만들어 보시오.</h1>
+    
+    <button id="5050" onclick="changeSize(50);">50x50</button>
+    <button id="100100" onclick="changeSize(100);">100x100</button>
+    <button id="200200" onclick="changeSize(200);">200x200</button>
+    
+    <br><br>
+    <div id="q2" class="palette"></div>
+    <script>
+        function changeSize(size){
+            var els = document.getElementsByClassName('palette');
+            els[0].style.width = size+'px';
+            els[0].style.height = size+'px';
+        }
+
+        function firstChange(){
+            var setFirstWidth = document.getElementById('q2').style.width = '50px';
+            var setFirstHeight=document.getElementById('q2').style.height = '50px';
+        }
+        function SecondChange(){
+            var setSecondWidth = document.getElementById('q2').style.width = '100px';
+            var setSecondHeight=document.getElementById('q2').style.height = '100px';
+        }
+        function thirdChange(){
+            var setThirdWidth = document.getElementById('q2').style.width = '200px';
+            var setThirdHeight=document.getElementById('q2').style.height = '200px';
+        }    
+    </script>
+</body>
+</html>

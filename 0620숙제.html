@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0620숙제</title>
+</head>
+<body>
+    <h1>행 열 갯수 각각 입력받아 테이블 만들기</h1>
+    <button onclick="createTable();">테이블 생성</button>
+    <div id="tableOut">
+    </div>
+    <script>
+        let createTable = function(){
+            const a= prompt('테이블 열의 갯수는?');
+            const b=prompt('테이블 행의 갯수는?');
+            
+            
+            console.log(Number(a));
+            console.log(Number(b));
+            let start = '<table border="1">';
+            let finish = '</table>';
+            let middle='';
+            for(let i=0;i<a;i++){
+                middle+='<tr>';
+                    for(let j=0;j<b;j++){
+                        middle+='<td>'+(i+1)+'행 '+(j+1)+'열'+'</td>';
+                    }
+                    middle+='</tr>';
+                };
+            document.getElementById('tableOut').innerHTML=start+middle+finish;
+        }
+        
+    </script>
+
+    <h1>둥글둥글 대머리</h1>
+    <img src="../resources/jing.png" id="jing" style="width: 150px; height: 150px; border: 4px dotted green; border-radius: 40px;"><br>
+    <input type="range" id="gap" onchange="jingjing(this);" min="0" max="75" step="5"><div id="su"></div>
+    <script>
+        let jingjing = function(ell){
+            let ro = document.getElementById('su').innerHTML=ell.value;
+            
+            console.log(document.getElementById('gap').value);
+            document.getElementById('jing').style.borderRadius=Number(document.getElementById('gap').value)+'px';
+        }
+    </script>
+
+    <fieldset>
+        <legend>검색할 항목을 선택하세요</legend>
+        <input type="radio" name="cate" id="title" value="1" onchange="change(this);"><label for="title">제목</label>
+        <input type="radio" name="cate" id="date" value="2" onchange="change(this);"><label for="date">날짜</label>
+        <input type="radio" name="cate" id="writer" value="3" onchange="change(this);"><label for="writer">작성자</label>
+    </fieldset>
+    <div id="legendOut" style="background-color: yellow;"></div>
+    
+    <script>
+        function change(el){
+            let ans = el.value;
+            if(ans==1){
+                document.getElementById('legendOut').innerHTML='<label for="titleIn">검색할 제목을 입력하세요 : </label><br><input type="text" id="titleIn"><button onclick="insertTitle();">검색</button>';
+            }else if(ans==2){
+                document.getElementById('legendOut').innerHTML='<label for="DateIn">검색할 날짜를 입력하세요 : </label><br><input type="date" id="DateIn">'+'~'+'<input type="date" id="DateIn2"><button onclick="insertDate();">검색</button>';
+            }else{
+                document.getElementById('legendOut').innerHTML='<label for="WriteIn">작성자를 입력하세요 : </label><br><input type="text" id="WriteIn"><button onclick="insertWrite();">검색</button>';
+            }
+        }
+        function insertTitle(){
+            console.log(document.getElementById('titleIn').value);
+        }
+        function insertDate(){
+            console.log(document.getElementById('DateIn').value);
+            console.log(document.getElementById('DateIn2').value);
+        }
+        function insertWrite(){
+            console.log(document.getElementById('WriteIn').value);
+        }
+    </script>
+
+
+</body>
+</html>

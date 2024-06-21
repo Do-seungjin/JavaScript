@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 태그 접근 실습과제1</title>
+    <style>
+        #output{
+            background-color: lightgoldenrodyellow;
+            width: 500px; height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML 태그에 접근 테스트</h1>
+    <form method="post" action="#">
+    <p>
+        <lable>구매자 : </lable>
+        <input type="text" placeholder="구매자 이름을 입력하세요"><br>
+    </p>    
+    
+    <label for="prod_name">상품명 : </label>
+    <input type="text" id="prod_name" placeholder="구매 상품명을 입력하세요"><br>
+    <br><label>가격 : </label>
+    <input type="text" name="price" placeholder="구매 가격을 입력하세요"><br><br>
+    </form>
+    <button onclick="printInput();">입력값 출력하기</button><br><br>
+    <div id="output"></div>
+    <script>
+        function printInput(){
+            var getName = document.getElementsByTagName("input")[0].value;
+            var getProd = document.getElementById('prod_name').value;
+            var getPrice = document.getElementsByName('price')[0].value;
+            console.log(getName);
+            console.log(getProd);
+            console.log(getPrice);
+            document.getElementById('output').innerText='사용자 : '+getName+'\n상품명 : '+getProd+'\n가격 : '+getPrice;
+
+        }
+
+    </script>
+</body>
+</html>

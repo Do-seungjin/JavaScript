@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙제</title>
+    <style>
+        #spongebob{
+            width: 50px; height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>자라나라 스폰지밥</h1>
+    <button  type="button" onclick="bigger();">+</button><br>
+    <img src="../resources/sponge.png" id="spongebob" alt="스폰지밥입니다">
+    <script>
+        function bigger(){
+            var sponge= document.getElementById('spongebob');
+            var W=sponge.width;
+            var H=sponge.height;
+            sponge.style.width=(W+100)+"px";
+            sponge.style.height=(H+100)+"px";
+        }
+    </script>
+
+    <h1>이미지 크기 조정</h1>
+    <label for="garo">가로 : </label>
+    <input type="text" id="garo"><br>
+    <label for="sero">세로 : </label>
+    <input type="text" id="sero">
+    <button type="button" onclick="changeSize();">변경</button><br>
+    <img src="../resources/dung.png" id="Ddung">
+    <script>
+        function changeSize(){
+            var g=document.getElementById('garo').value;
+            var s=document.getElementById('sero').value;
+            var dung = document.getElementById('Ddung');
+            dung.style.width=g+"px";
+            dung.style.height=s+"px";
+        }
+    </script>
+</body>
+</html>

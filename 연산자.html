@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연산자</title>
+</head>
+<body>
+    <h1>부호 연산자</h1>
+    <button onclick="signOperator();">확인</button>
+    <script>
+        function signOperator(){
+            let num = -100;
+            console.log(+num);
+            console.log(-num);
+            console.log(num);
+
+            num = -num;
+            console.log(num);
+        }
+    </script>
+    <h1>부호 뒤집기</h1>
+    <input type="number" id="insert_num">
+    <button type="button" onclick="reverse();">입력</button>
+    <script>
+        function reverse(){
+            let num = document.getElementById('insert_num').value;
+            num=-num;
+            alert(num);
+        }
+    </script>
+
+    <h1>논리 부정 연산자</h1>
+    <button onclick="sayNo();">!</button>
+    <script>
+        function sayNo(){
+            let yes = true;
+            yes = !yes;
+            console.log(yes);
+        }
+    </script>
+
+    <h1>증감 연산자</h1>
+    <button onclick="addTest();">전위, 후위 연산자</button>
+    <script>
+        function addTest(){
+            let a=2,b=0;
+            // 전위 연산
+            b=++a;
+            // 1. a=a+1;
+            // 2.b=a;
+
+            // 후위 연산
+            b=a++;
+            // 1. b=a;
+            // 2. a=a+1;
+            alert("a : "+a+"\n b : "+b);
+            
+        }
+    </script>
+    <h1>증감 연산자 연습</h1>
+    <h1 id="num">0</h1>
+    <button onclick="plus();">+</button>
+    <button type="button" onclick="minus();">-</button>
+    <br><button onclick="oneclick(1);">+</button>
+    <button type="button" onclick="oneclick(2);">-</button>
+    <script>
+        function plus(){
+            var numberPlus = document.getElementById('num').innerText;
+            numberPlus = Number(numberPlus);
+            numberPlus = ++numberPlus;
+            document.getElementById('num').innerHTML=numberPlus;
+            
+            
+        }
+        function minus(){
+            var numberMin = document.getElementById('num').innerText;
+            numberMin = Number(numberMin);
+            numberMin=--numberMin;
+            document.getElementById('num').innerHTML=numberMin;
+        }
+        function oneclick(m){
+            var numberPM = document.getElementById('num').innerText;
+            if(m==1){
+                numberPM = Number(numberPM);
+                numberPM= ++numberPM;
+            } else {
+                numberPM = Number(numberPM);
+                numberPM= --numberPM;
+            }
+            document.getElementById('num').innerHTML = numberPM;
+        }
+    </script>
+
+    <h1>미니 계산기</h1>
+    <br>
+    <label for="first_input">숫자 1 : </label>
+    <input type="number" id="first_input"><br>
+    <label for="second_input">숫자 2 : </label>
+    <input type="number" id="second_input">
+    <button type="button" onclick="calc();">계산하기</button><hr>
+    <div id="result"></div>
+    <script>
+        function calc(){
+            var num1 = Number(document.getElementById('first_input').value);
+            var num2 = Number(document.getElementById('second_input').value);
+            var plus=num1+num2;
+            var minus=num1-num2;
+            var multiple=num1*num2;
+            var divide=num1/num2;
+            var remain=num1%num2;
+            document.getElementById('result').innerHTML="+ : "+plus+"<br> - : "+minus+"<br> * : "+multiple+"<br> / : "+divide+"<br> % : "+remain;
+        }
+    </script>
+
+    <h1>복합 대입 연산자</h1>
+    <button onclick="complexOperator();">연습</button>
+    <script>
+        function complexOperator(){
+            let f=10;
+            f+=10;
+            console.log("+= : "+f)
+            f-=5;
+            console.log(f);
+            f*=10;
+            f/=10;
+            f%=2;
+        }
+    </script>
+    <h1>문자 누적하기</h1>
+    <input type="text" id="inp">
+    <button onclick="add();">누적</button>
+    <br><br><textarea cols="27" rows="5" style="resize: none;" id="txarea"></textarea>
+    <script>
+        function add(){
+            let remain = document.getElementById('txarea');
+            let text = document.getElementById('inp');
+            remain.value += text.value;
+            text.value='';
+            var insert = document.getElementById('txarea').innerHTML=text;
+            document.getElementById('inp').innerHTML='';
+        }
+    </script>
+    <h1>비교 연산자(1)</h1>
+    <!-- ==은 값만 같으면 true 반환 -->
+    <!-- === 은 자료형과 값이 모두 같아야 true 반환 -->
+    <button onclick="comOperator();">==과 ===</button>
+    <script>
+        function comOperator(){
+            console.log(1=='1');
+            console.log(1==='1');
+
+            console.log('== 동등과 일치의 결과가 다른 경우 ==');
+            console.log(null == undefined);
+            console.log(1 === true);
+            console.log('1'== true);
+        }       
+    </script>
+    <br><br><br>
+    <label for="pay">돈 내기</label>
+    <input type="text" id="pay">
+    <br>
+    <img src="../resources/human.png" alt="직원" onclick="cafe();" width="100px" height="100px">
+    <div style="background-color: greenyellow;" id="cafeCharge"></div>
+    <script>
+        function cafe(){
+            let payment = document.getElementById('pay').value;
+            let ans = payment>2500 ? '거스름돈은 '+(payment-2500)+'원 입니다':payment == 2500? '커피 나왔습니다.':'아메리카노는 2500원입니다.';
+            document.getElementById('cafeCharge').innerHTML = ans;
+        }
+    </script>
+
+</body>
+</html>

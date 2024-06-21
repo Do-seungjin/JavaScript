@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본형식</title>
+</head>
+<body>
+    <h1>인라인 방식</h1>
+    <button type="button" onclick="alert('alert는 알람!');">
+        내장 함수
+    </button><br>
+    <button type="button" onclick="inlineFunc();">
+        사용자 정의 함수
+    </button>
+    <script>
+        // Hello JavaScript라는 문구를 alert창에 출력하는 함수
+        /* 블록 주석 */
+        function inlineFunc(){
+            alert('Hello JavaScript');
+        }
+    </script>
+    <h1>인터널 방식</h1>
+    <button type="button" id="internal_btn">
+        인터널 테스트
+    </button>
+    <script>
+        document.getElementById('internal_btn').onclick=function(){
+            alert('인터널 방식이에요');
+        };
+    </script>
+    <h1>external 방식</h1>
+    <button type="button" id="external_btn">
+        익스터널 버튼
+    </button>
+    <script src="sample.js"></script>
+    <h1>데이터 출력</h1>
+    <button onclick="printConsole();">콘솔로그</button>
+    <script>
+        function printConsole(){
+            // 개발자 도구의 콘솔 패널에 Hello World 출력
+            console.log('Hello World');
+        }
+    </script>
+    <h1>연습 : 나의 이름 출력</h1>
+    <button onclick="printName();">나의 이름은?</button>
+    <script>
+        function printName(){
+            console.log('도승진');
+        }
+    </script><br>
+    <button onclick="printAlert();">얼럿</button>
+    <script>
+        function printAlert(){
+            alert(123456);
+        }
+    </script>
+    <br>
+    <h1>프롬프트</h1>
+    <button onclick="printPrompt();">프롬프트</button>
+    <script>
+        function printPrompt(){
+            // var name = prompt('이름을 입력하세요','김철수');
+            // console.log(name);
+            console.log(prompt('이름을 입력하세요.','김철수'));
+        }
+    </script><br>
+    <h1>프롬프트 연습</h1>
+    <button onclick="whereAreYou();">위치</button>
+    <script>
+        function whereAreYou(){
+            // var positionInfo = prompt('어디에 있으세요?');
+            // console.log(positionInfo);
+            console.log(prompt('어디에 있으세요?'));
+        }
+    </script>
+    <br>
+    <h1>컨펌</h1>
+    <button onclick="printConfirm();">컨펌</button>
+    <script>
+        function printConfirm(){
+            var yesOrNo = confirm('당신은 로봇입니까?');
+            console.log(yesOrNo);
+            if(confirm('삭제하시겠습니까?')){
+                console.log('삭제');
+            }
+        }
+    </script>
+    <h1>컨펌 연습</h1>
+    <button onclick="printSunday();">일요일</button>
+    <script>
+        function printSunday(){
+            var ans = confirm('오늘은 일요일인가요?');
+            console.log(ans);
+            if(ans){
+                console.log('오늘은 일요일입니다.');
+            } else {
+                console.log('오늘은 일요일이 아닙니다.');
+            }
+        }
+    </script><br>
+    <h1>요소 생성</h1>
+    <button onclick="printWrite();">요소 생성</button>
+    <script>
+        function printWrite(){
+            // document.write('<h1>제목</h1>');
+            document.write('Lipsum');
+        }
+    </script><br>
+    <h1>요소 생성 연습</h1>
+    <button onclick="printYoso();">제목 출력</button>
+    <script>
+        function printYoso(){
+            document.write('<h1>제목은 역시 h1</h1>');
+        }
+    </script>
+</body>
+</html>

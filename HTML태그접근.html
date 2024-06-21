@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 태그 접근</title>
+</head>
+<body>
+    <input type="text" id="user_id" class="user_info">
+    <h1>document.getElementById();</h1>
+    <style>
+        #idTarget{
+        border: 2px dotted darkorange;
+        }
+    </style>
+    <div id="idTarget">
+        id 기준 접근 1
+    </div>
+    <!-- <div id="idTarget">
+        id 기준 접근 2
+    </div> -->
+    <input type="button" value="빨갛게" onclick="turnRed();">
+    <script>
+        function turnRed(){
+            var test = document.getElementById('idTarget');
+            test.style.color ='red';
+        }
+    </script>
+    <h1>getElementByClassName();</h1>
+    <p class="a">p1</p>
+    <span class="b a">span1</span>
+    <p class="c">p2</p>
+    <div class="a b c">div1</div>
+    <input type="button" value="a클래스" onclick="changeOnly();">
+    <script>
+        function changeOnly(){
+            var el = document.getElementsByClassName('a');
+            console.log(el);
+            console.log(el[0]);
+            // el[0].style.color = 'hotpink';
+            for(var i =0;i<el.length ; i++){
+                el[i].style.color = 'yellow';
+            }
+        }
+    </script>
+    <input type="button" value="b클래스" onclick="changeBackgroundColor();">
+    <script>
+        function changeBackgroundColor(){
+            var elB= document.getElementsByClassName('b');
+            for(var b = 0; b<elB.length ; b++){
+                elB[b].style.backgroundColor='blue';
+            }
+        }
+    </script>
+    <h1>getElementsByTagName();</h1>
+    <ul>
+        <li>html</li>
+        <li>css</li>
+        <li>JavaScript</li>
+    </ul>
+    <button type="button" onclick="changeJSBlue();">JS좋아</button>
+    <script>
+        function changeJSBlue(){
+            var tagEl = document.getElementsByTagName('li');
+            // tagEl[2].style.color = 'blue';
+            for(var i = 0; i<tagEl.length ; i++){
+                console.log(tagEl[i]);
+            }
+        }
+    </script>
+    <h1>getElementsByName</h1>
+    <label>
+        <input type="checkbox" name="food" value="1">짜장면
+    </label><br>
+    <label>
+        <input type="checkbox" name="food" value="2">짬뽕
+    </label><br>
+    <label>
+        <input type="checkbox" name="food" value="3">탕수육
+    </label>
+    <button onclick="addService();">탕수육 서비스</button>
+    <script>
+        function addService(){
+            var nameEl = document.getElementsByName('food');
+            nameEl[2].checked = true;
+        }
+    </script>
+    <h1>querySelector,querySelectorAll</h1>
+    <button onclick="practiceQuery();">유일한 요소</button>
+    <script>
+        function practiceQuery(){
+            var one = document.querySelector('#idTarget');
+            one.style.color = 'orange';
+            // var two = document.querySelector('.a');
+            // console.log(two);
+            var three = document.querySelectorAll('.a');
+            console.log(three);
+            for(var i=0 ; i<three.length ; i++){
+                three[i].style.color = 'red';
+            }
+        }
+    </script>
+    <h1>value:값 가져오고, 바꾸기</h1>
+    <input type="text" id="user_name" value="김철수">
+    <input type="button" value="값 가져오기" onclick="getValue();">
+    <input type="button" value="값 변경하기" onclick="setValue();">
+    <script>
+        function setValue(){
+            var userEle=document.getElementById('user_name');
+            userEle.value='이영희';
+            document.getElementById('user_name').value='이영희';
+        }
+        function getValue(){
+            var userName = document.getElementById('user_name');
+            var userNameVal=userName.value;
+            alert(userNameVal);
+        }
+    </script>
+
+    <h1>style:값 가져오고, 바꾸기</h1>
+    <input type="button" value="스타일" onclick="changeStyle();" id="style_btn">
+    <style>
+        input[type="button"]{
+            background-color: cornflowerblue;
+        }
+    </style>
+    <script>
+        function changeStyle(){
+            var styleEle=document.getElementById('user_name');
+            styleEle.style.backgroundColor='gold';
+            // 가져오기
+            var styleEleBack=styleEle.style.backgroundColor;
+            console.log(styleEleBack);
+            var basicStyle = document.getElementById('style_btn');
+            // basicStyle = basicStyle.style.backgroundColor;
+            basicStyle=getComputedStyle(basicStyle).backgroundColor;
+            console.log(basicStyle);
+        }
+    </script>
+    <!-- 특정 요소 내부에 다른 요소가 있는 경우 -->
+    <h1>inner Html</h1>
+    <div id="test1">
+        <p>Hello!</p>
+    </div>
+    <!-- 특정 요소 내부에 텍스트만 있는 경우 -->
+    <div id="test2">
+        Hello!!
+    </div>
+    <input type="button" value="가져오기" onclick="getTag();">
+    <input type="button" value="변경하기" onclick="setTag();">
+    <script>
+        function setTag(){
+            // 대입연산자 = : 요소 내부 콘텐츠 변경
+            document.getElementById('test1').innerHTML='<h1>Hello~</h1>';
+            // 복합 대입연산자 += :  요소 내부 콘텐츠 추가 
+            document.getElementById('test1').innerHTML+='<h1>Hello~</h1>';
+            // document.getElementById('test2').innerHTML='<h2>Bye<h2>';
+            document.getElementById('test2').innerHTML = '문자 컨텐츠';
+        }
+
+        function getTag(){
+            var test1 = document.getElementById('test1').innerHTML;
+            var test2 = document.getElementById('test2').innerHTML;
+            console.log(test1);
+            console.log(test2);
+        }
+    </script>
+
+    <h1>inner Text</h1>
+    <input type="button" value="가져오기" onclick="getText();">
+    <input type="button" value="변경하기" onclick="setText();">
+    <script>
+        function setText(){
+            document.getElementById('test1').innerText = '<h1>Change</h1>';
+            document.getElementById('test2').innerText = '정말 많이 반가워요~';
+        }
+        function getText(){
+            var test3 = document.getElementById('test1').innerText;
+            var test4 = document.getElementById('test2').innerText;
+            console.log(test3);
+            console.log(test4);
+        }
+    </script>
+
+</body>
+</html>

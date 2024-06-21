@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+</head>
+<body>
+    <h1 onclick="changeAll();">장점</h1>
+    
+    <h1 id="darkred" onclick="changeRed();">빨강색</h1>
+    <h1 id="coral" onclick="changeColor(this);">주황색</h1>
+    <h1 id="gold" onclick="changeColor(this);">노랑색</h1>
+    <script>
+        function changeRed(){
+            document.getElementById('darkred').style.color='darkred';
+        }
+        function changeColor(ele){
+            document.getElementById(ele.id).style.color=ele.id;
+        }
+        function changeAll(){
+            const els = document.getElementsByTagName('h1');
+            for(let i =0;i<els.length;i++){
+                els[i].style.color=els[i].id;
+            }
+        }
+    </script>
+    <h1>매개변수</h1>
+    <button onclick="printFruit('딸기',15000);">기본</button>
+    <button onclick="printFruit(20000,'수박');">순서 바꾸기</button>
+    <button onclick="printFruit('참외');">선언한 매개변수보다 더 작은 수의 매개변수 입력하여 호출</button>
+    <button onclick="printFruit('수박',10000,'초특가!');">더 많이!</button>
+    <script>
+        function printFruit(name, price){
+            if(typeof(name)=='string'){
+                console.log('과일 이름: '+name);
+            }else{
+                console.log('첫번째 매개변수는 String으로 입력하세요.');
+            }
+            
+            if(typeof(price)=='number'){
+                console.log('과일 가격: '+price);
+            }else{
+                console.log(typeof(price));
+                console.log('두번째 매개변수는 Number으로 입력하세요.');
+            }
+        }
+    </script>
+    <button onclick="printDefault();">default</button>
+    <button onclick="printDefault('딸기',10000);">default2</button>
+    <script>
+        function printDefault(str='체리',price=15000){
+            alert(str+'한 박스에 '+price+'원 입니다');
+        }
+    </script>
+    <br>
+    
+    <input type="text" id="user_id" onkeyup="idCheck(this);">
+    <div id="id_state"></div>
+    <script>
+        function idCheck(elll){
+            console.log(elll.value.length);
+            if(!elll.value){
+                document.getElementById('id_state').innerHTML='아이디는 필수값입니다.';
+                document.getElementById('id_state').style.visibility='visible';
+            }else if(elll.value.length<4){
+                document.getElementById('id_state').innerHTML='아이디는 3글자 이상이어야 합니다.'
+                document.getElementById('id_state').style.visibility='visible';
+            }else{document.getElementById('id_state').innerHTML='';}      
+        }
+    </script>
+
+    <h1>가변인자 함수</h1>
+    <button onclick="multipleParam(1,2,3,4,5);">연습</button>
+    <script>
+        function multipleParam(){
+            // console.log(arguments);
+            for(let i=0;i<arguments.length;i++){
+                console.log(arguments[i]);
+            }
+        }
+    </script>
+    <h1>리턴 (반환값)</h1>
+    <button onclick="alert(showDate());">오늘 날짜</button>
+    <script>
+        function showDate(){
+            const date=new Date();
+            // console.log(date);
+            const year = date.getFullYear();
+            const month= date.getMonth()+1;
+            const day = date.getDate();
+            return year+'-'+month+'-'+day;
+        }
+    </script>
+    
+    <h1>선언적 함수</h1>
+    <button onclick="basicFunc();">연습</button>
+    <script>
+        function basicFunc(){
+            console.log('선언적 함수(1)');
+        }
+        function basicFunc(){
+            console.log('선언적 함수(2)');
+        }
+    </script>
+    <h1>익명 함수</h1>
+    <button onclick="annoyFunc();">연습</button>
+    <script>
+        let annoyFunc = function(){
+            console.log('익명함수(1)');
+        }
+    </script>
+    <h1>화살표 함수</h1>
+    <script>
+        // 1. 키워드 변수명 = () => {기능}
+        const arrowFunc1=()=>{
+            console.log("화살표(1)");
+        }
+        arrowFunc1();
+        // 2. 키워드 변수명 = (매개변수) => {return}
+        const arrFunc2 = (num1,num2) => {
+            return num1*num2;
+        }
+        // 3. 키워드 변수명 = (매개변수) => 반환값
+        const arrFunc3 = (num1,num2) => num1+num2;
+        // 4. 키워드 변수명 = 매개변수 => 반환값
+        const arrFunc4 = str => str.length;
+    </script>
+
+    <h1>함수 선언 연습문제</h1>
+    <button onclick="call(11,41);">선언</button>
+    <button onclick="callFunc(11,41);">익명</button>
+    <button onclick="arrowCall(11,41);">화살표</button>
+    <script>
+        function call(a,b){
+            if(typeof(a)=='number'&&typeof(b)=='number'){
+                console.log(a*b);
+            } else {
+                alert('숫자를 입력하세요');
+            }
+        }
+
+        let callFunc = function(a,b){
+            console.log(a*b);
+        }
+
+        let arrowCall = (a,b) => {console.log(a*b)};
+    </script>
+
+    <h1>익명함수 활용</h1>
+    <button onclick="timerFunc();">실행</button>
+    <script>
+        let timerFunc = function(){
+            setTimeout(function(){
+                console.log('2초 뒤');
+            },2000);
+        }
+    </script>
+    <button>반환값으로</button>
+    <script>
+        const returnFunc = (str) => {
+            const innerFunc = (msg) => {
+                console.log(str+':'+msg);
+            }
+            return innerFunc;
+        }
+    </script>
+    <h1>즉시 실행 함수</h1>
+    <div id="instant_div"></div>
+    <script>
+        (function(){
+            document.getElementById('instant_div').innerHTML='<h1>짜잔~</h1>';
+        })();
+    </script>
+
+
+
+</body>
+</html>

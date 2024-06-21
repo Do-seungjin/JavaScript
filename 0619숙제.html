@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문 반복문 숙제</title>
+</head>
+<body>
+    <h1>홀수? 짝수?</h1>
+    <button onclick="add();">구슬 추가</button>
+    <button onclick="holjack();">홀짝</button>
+    <button onclick="reset();">초기화</button>
+    <div id="output"></div>
+    <div id="holjak"></div>
+    
+    <script>
+        function add(){
+            let remain = document.getElementById('output').innerHTML+='<div id="circle" style="margin: 0; width: 100px; height: 100px; background-color: aquamarine; border-radius: 50%; display: inline-block;"></div> ';
+        }
+        function holjack(){
+            let remain= document.getElementsByTagName('div');
+            let check = Number(remain.length-3);
+            console.log(check);
+            if(check==0){
+                alert('구슬이 없습니다.');
+            }else{
+                if(check%2==0){
+                    document.getElementById('holjak').innerHTML='짝수입니다.';
+                }else{
+                    document.getElementById('holjak').innerHTML='홀수입니다.';
+                }
+            }
+        }
+        function reset(){
+            document.getElementById('output').innerText='';
+            document.getElementById('holjak').innerText='';
+        }
+    </script>
+
+    <h1>계산기</h1>
+    <label for="first">첫번째 값 : </label>
+    <input type="number" id="first"><br>
+    <label for="second">두번째 값 : </label>
+    <input type="number" id="second">
+    <button onclick="calc(1);">+</button>
+    <button onclick="calc(2);">-</button>
+    <button onclick="calc(3);">X</button>
+    <button onclick="calc(4);">/</button>
+    <button onclick="calc(5);">%</button>
+    <div id="calcout"></div>
+    <script>
+        function calc(m){
+            let fir=Number(document.getElementById('first').value);
+            let sec=Number(document.getElementById('second').value);
+            switch(m){
+                case 1: document.getElementById('calcout').innerHTML=fir+sec; break;
+                case 2: document.getElementById('calcout').innerHTML=fir-sec; break;
+                case 3: document.getElementById('calcout').innerHTML=fir*sec; break;
+                case 4: document.getElementById('calcout').innerHTML=fir/sec; break;
+                case 5: document.getElementById('calcout').innerHTML=fir%sec; break;
+            }
+            
+        }
+    </script>
+
+</body>
+</html>

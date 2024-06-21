@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수</title>
+</head>
+<body>
+    <script>
+        // 변수 선언
+        var test;
+        // 변수 할당
+        test='JavaScript';
+        // 변수 선언, 할당 동시
+        var test1 = 'JS';
+    
+        // 변수의 유효 범위
+        // 지역 변수의 범위가 함수 단위
+        var a = '전역변수';
+        function scopeBasic(){
+            var b = '지역변수';            
+        }
+        // 1. 지역변수로 선언한 변수를 함수 밖에서 호출
+        console.log(b);
+        // 2. 동일한 이름의 변수를 전역변수로도, 지역변수로도 선언
+        var b = '지역변수과 이름은 같지만 전역변수';
+        console.log(b);
+        // 3. for문
+        console.log('처음'+i);
+        for(var i=0;i<4;i++){
+            console.log('for문 안 : '+i);
+        }
+        console.log('for문 밖(2) : '+i);
+    
+        // 함수 레벨 스코프 vs 블록 레벨 스코프
+        var x = 200;
+        console.log('=== 함수 레벨 스코프');
+        for(var x=0;x<10;x++){
+            console.log('안 : '+x);
+        }
+        console.log('밖 : '+x);
+        console.log('=== 블록 레벨 스코프 ===');
+        let y = 200;
+        for(let y=0;y<10;y++){
+            console.log('안 : '+y);
+        }
+        console.log('밖 : '+y);
+        console.log('=== let과 const ===');
+        let testLet;
+        testLet = 'let 1회';
+        console.log(testLet);
+        testLet = 'let 2회';
+        console.log(testLet);
+        const testConst='const 1회';
+        console.log(testConst);
+        // testConst='const 2회';
+        console.log(testConst);
+    </script>
+    <h1 onclick="variableType();">변수의 자료형</h1>
+    <script>
+        function variableType(){
+            console.log('=== 다양한 변수 타입 ===');
+            let greeting = 'Hello World';
+            let name= "Maria";
+            let price = 19.99;
+            let age = 100;
+            let isStudent = true;
+            alert(typeof(greeting)+":"+greeting +'\n'+typeof(name)+":"+ name+'\n'+typeof(price)+":"+price+'\n'+typeof(age)+":"+age+'\n'+typeof(isStudent)+":"+isStudent);
+            let person={
+                name:'Maria',
+                age:100,
+                isStudent:false,
+                greet:function(){
+                    console.log('Hi, my name is'+this.name);
+                }
+            };
+            alert(person['greet']);
+            
+            function add(a,b){
+                return a+b;
+            }
+            let sum = add(5,3);
+            console.log(typeof(add)+":"+sum);
+        }
+    </script>
+    <h1>falsy</h1>
+    <button onclick="falsyTest();">falsy 조회</button>
+    <script>
+        function falsyTest(){
+            if(0 == false){
+                // !0
+                console.log('0 is falsy');
+            }
+            if(!""){
+                console.log('비어있는 문자열도 falsy');
+            }
+            if(!null){
+                console.log("null도 falsy");
+            }
+            if(!undefined){
+                console.log("undefined is falsy");
+            }
+            if(!NaN){
+                console.log('Not A Number is falsy');
+            }
+        }
+    </script>
+    <h1>형변환</h1>
+    <button onclick="stringPlusNumber();">문자+숫자</button>
+    <script>
+        function stringPlusNumber(){
+            let num1=100;
+            let num2='100';
+            console.log("num1 : "+typeof(num1));
+            console.log("num2 : "+typeof(num2));
+            console.log(num1==num2);
+            console.log(num1*num2);
+            console.log(num1+num2);
+        }
+    </script>
+
+    <h1>강제 형변환</h1>
+    <input type="number" id="num_test">
+    <button onclick="inputTest();">숫자 더하기</button>
+    <script>
+        function inputTest(){
+            let num=document.getElementById('num_test').value;
+            // if(!num){
+            //     console.log('입력하지 않은 상태');
+            //     alert('숫자 정보를 입력하세요');
+            // }else{
+            //     num=Number(num);
+            //     console.log(num+num);
+            //     console.log(typeof(num));
+            // }
+            let change1 = !num?0:Number(num);
+            let change2=parseInt(num);
+            let change3=toString(change2);
+            console.log(typeof(change3));
+        }
+    </script>
+
+    <h1>연습문제</h1>
+    <label for="first">첫번째 수 : </label>
+    <input type="number" id="first" name="prac"><br>
+    <label for="second">두번째 수 : </label>
+    <input type="number" id="second" name="prac">
+    <button type="button" onclick="plus();"> 더하기 </button>
+    <script>
+        function plus(){
+            var get =document.getElementsByName('prac');
+            var first=Number(get[0].value);
+            var second=Number(get[1].value);
+            if(!first || !second){
+                console.log('입력하지않은상태');
+                alert('숫자 정보를 입력하세요.')
+            } else {
+                alert(first+second);
+            }
+            
+        }
+    </script>
+    <h1>연습문제 답안</h1>
+    <style>
+        input[type="number"]{
+            display: block;
+        }
+    </style>
+    <label for="firstans">첫번째 수 : </label>
+    <input type="number" id="firstans" name="pracans"><br>
+    <label for="secondans">두번째 수 : </label>
+    <input type="number" id="secondans" name="pracans">
+    <button type="button" onclick="plusans();"> 더하기 </button>
+    <script>
+        function plusans(){
+            let firstEle=document.getElementById('firstans').value;
+            let secondEle=document.getElementById('secondans').value;
+            if(!firstEle && !secondEle){
+                console.log('입력하지않은상태');
+                alert('숫자 정보를 입력하세요.')
+            } else {
+                firstEle = Number(firstEle);
+                secondEle = Number(secondEle);
+                alert(firstEle+secondEle);
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>
