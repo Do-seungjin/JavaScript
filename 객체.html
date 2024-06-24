@@ -77,8 +77,8 @@
     <button onclick="input();">입력</button>
     <button onclick="output();">출력</button>
     <script>
-        const a = prompt('메뉴명을 입력하세요');
-        const b= prompt('가격을 입력하세요');
+        // const a = prompt('메뉴명을 입력하세요');
+        // const b= prompt('가격을 입력하세요');
         function input(){
 
         }
@@ -86,6 +86,187 @@
 
         }
     </script>
+
+    <h1>객체 호출(1) : 리터럴 속성</h1>
+    <button onclick="basicGetObj();">기본, 배열, 객체</button>
+    <script>
+        let basicGetObj = function(){
+            let person = setPerson('김철수',true,['수영','조깅'],{name : '만년필',price : 100});
+            console.log(person);
+            let val1 = person.name;
+            let val2 = person['name'];
+            let val3 = person['is'+'Student'];
+            console.log(val1,val2,val3);
+            let arr1 = person['hobby'][0];
+            let arr2 = person.hobby[1];
+            console.log(arr1,arr2);
+            console.log(person.hobby.join('+'));
+            person['hobby'].forEach(function(ele){
+                console.log('forEach : '+ele);
+            });
+            let obj1 = person['item']['price'];
+            let obj2 = person['item'].price;
+            console.log(obj1,obj2);
+            let obj3 = person.item.name;
+            let obj4=person.item['name'];
+            console.log(obj3,obj4);
+            let obj = person['item'];
+            console.log(obj);
+            let price = obj['price'];
+            console.log(price);
+        }
+    </script>
+    <script>
+        let setPerson = function(name,bool,arr,item){
+            let obj = {
+                name : name,
+                isStudent : bool,
+                hobby : arr,
+                item : item,
+                callName : function(){
+                    return '내 이름은'+this.name;
+                }
+            };
+            return obj;
+        }
+            </script>
+
+    <button onclick="getFuncFromObj();">함수 속성에 접근</button>
+    <script>
+        let getFuncFromObj=function(){
+            let employee={
+                name:'홍길동'
+                ,isStudent:false
+                ,hobby : ['보석십자수','수영']
+                ,callName : function(){
+                    return this.name+'입니다';
+                }
+                ,testFunc : function(){
+                    if(this.isStudent){
+                        console.log('학생'+this.name);
+                    }else{
+                        console.log(this.name+'님은 학생이 아닙니다.');
+                    }
+                }
+            };
+            let func1 = employee['callName']();
+            console.log(func1);
+            employee.testFunc();
+            
+        }
+    </script>
+    <h1>반복문</h1>
+    <button onclick="showAllDataObj();">연습</button>
+    <script>
+        let showAllDataObj = () => {
+            let person = setPerson('이영희',true,['영화','독서'],{name :'아이패드',price : 200});
+            for(key in person){
+                // name, isStudent,hobby,item.....
+                console.log(person[key]);
+                let valType = typeof(person[key]);
+                
+                // valType이 object와 동일한 경우
+                // 1. Array.isArray가 true면 forEach 써서 배열 데이터 전체 조회
+                // 2. 그렇지 않으면 또 다른 for in문 써서 객체 데이터 전체 조회
+                let val = person[key];
+                valType=typeof(val);
+                console.log(valType+':'+val);
+                
+                if(valType=='object'){
+                    // 배열이거나 객체거나
+                    if(Array.isArray(val)){
+                    // 배열 -> forEach 전체 조회
+                        for(let i=0;i<person['hobby'].length;i++){
+                        console.log('배열 : '+person['hobby'][i]);
+                        }
+                    }else{
+                    // 객체 -> for in 전체 조회
+                    for(key123 in person){
+                        console.log('객체 : '+person[key123]);
+                    }
+                    }
+                }else if(valType=='function'){
+                    // 함수(메소드) -> 함수 호출
+                    console.log('함수 : ');
+                }else{
+                    // 리터럴
+                    console.log('리터럴 : ');
+                }
+            }
+        }
+    </script>
+
+    <h1>this</h1>
+    <button onclick="car.showPrice();">속성</button>
+    <script>
+        // 화살표 함수에서 this는 상위 범주의 this를 바인딩(연결)
+        let car = {
+            detail : {
+                birth : 2024,
+                price : 5000
+            },
+            showPrice : () => {
+                console.log(this);
+                console.log(this.detail);
+                console.log(this.detail.price + '만원 입니다.');
+            }
+        };
+    </script>
+    <button onclick="testGetElement(this);">요소</button>
+    <script>
+        let testGetElement=function(element){
+            console.log(element);
+            console.log(element.innerText);
+        }
+    </script>
+    <h1>객체 배열</h1>
+    <style>
+        table{
+            width: 300px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        table td, table th{
+            border: 1px solid black;
+            text-align: center;
+        }
+        table th{
+            background-color: gainsboro;
+        }
+    </style>
+    <button onclick="putTable();">테이블 생성</button>
+    <table id="a">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+    </tr>
+    </table>
+    <script>
+        let customers = [
+            {name : '이영희',
+            age : 61 ,
+            gender : '여'}
+        ];
+        customers.unshift({name:'김철수',age:25,gender:'남'});
+        customers.push({name:'gildong',age:43,gender:'M'});
+        // customers.shift();
+        // customers.pop();
+        console.log(customers);
+        let putTable = function(){
+            console.log(customers);
+            document.getElementById('a').innerHTML='<tr><th>이름</th><th>나이</th><th>성별</th></tr>';
+            for(let i=0;i<customers.length;i++){
+                console.log(customers[i]);
+                document.getElementById('a').innerHTML+='<tr><td>'+customers[i]['name']+'</td><td>'+customers[i]['age']+'</td><td>'+customers[i]['gender']+'</td></tr>'
+            }
+        }
+
+    </script>
+
+
+
+
 
 </body>
 </html>
