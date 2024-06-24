@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장 객체</title>
+</head>
+<body>
+    <h1>String</h1>
+    <h4>toUpperCase().toLowerCase(),trim()</h4>
+    <select onchange="changeFruit(this.value);">
+        <option value="">선택하기</option>
+        <option value="apple">apple</option>
+        <option value="banana">banana</option>
+    </select>
+    <script>
+        let changeFruit =function(val){
+            console.log(val);
+            val=val.trim();
+            switch(val){
+                case 'apple': alert('사과!!');break;
+                case 'banana':alert('바나나~~~~~~~~');break;
+                case 'orange':alert('오렌지**');break;
+            }
+        }
+    </script>
+    <h4>length와 charAt의 활용</h4>
+    <input type="text" id="leng_text" maxlength="10" onkeyup="getLength(this.value);">
+    <span id="text_span">0</span>
+    <span>/10</span>
+    <script>
+        let getLength = function (val){
+            // console.log(val);
+            let leng = val.length;
+            document.getElementById('text_span').innerText=leng;
+            for(let i=0;i<leng;i++){
+                if(val.charAt(i)=='b'){
+                    alert('10초 동안 채팅을 쓸 수 없어요.');
+                }
+            }
+        }
+    </script>
+    <h4>indexOf,lastIndexOf,substr</h4>
+    <input type="text" id="address" style="width: 600px;" value="서울 금천구 가산디지털2로 95 3층 구디아카데미 B반">
+    <button onclick="idxTestFunc();">연습</button>
+    <script>
+        let idxTestFunc = function(){
+            let val = document.getElementById('address').value;
+            console.log(val);
+            let idxGu1=val.indexOf('구');
+            console.log(idxGu1);
+            let idxGu2=val.lastIndexOf('구');
+            console.log(idxGu2);
+            let result = val.substring(idxGu1,idxGu2);
+            console.log(result);
+        }
+    </script>
+    <h4>includes,replace</h4>
+    <button onclick="practiceReplace();">연습</button>
+    <script>
+        let practiceReplace = function (){
+            let temp ='HTML,CSS,Java';
+            if(temp.includes('Java')){
+                temp=temp.replace('Java','JavaScript');
+            }
+            console.log(temp);
+        }
+    </script>
+
+
+<h1>string 연습하기</h1>
+<p id="p1">Lorem ipsum dolor sit amet</p>
+<form>
+    <input type="button" value="변환" onclick="changeStr();">
+    <div>
+        <label for="str_1">대문자 만들기</label>
+        <input type="text" id="str_1">
+    </div>
+    <div>
+        <label for="str_2">소문자 만들기</label>
+        <input type="text" id="str_2">
+    </div>
+    <div>
+        <label for="str_3">문장의 길이</label>
+        <input type="text" id="str_3">
+    </div>
+    <div>
+        <label for="str_4">7번째 자리에 있는 알파벳</label>
+        <input type="text" id="str_4">
+    </div>
+    <div>
+        <label for="str_5">알파벳 'p'의 위치</label>
+        <input type="text" id="str_5">
+    </div>
+    <div>
+        <label for="str_6">뒤에서부터 찾았을 때 가장 가까운 'm'의 위치</label>
+        <input type="text" id="str_6">
+    </div>
+    <div>
+        <label for="str_7">12번째 자리부터 5개의 알파벳</label>
+        <input type="text" id="str_7">
+    </div>
+    <div>
+        <label for="str_8">띄어쓰기 기준으로 단어 자르기</label>
+        <textarea rows="5" style="resize: none;" id="str_8"></textarea>
+    </div>
+    <script>
+        let changeStr = function(val){
+            let pTag = document.getElementById('p1').innerText;
+            console.log(pTag);
+            document.getElementById('str_1').value = pTag.toUpperCase();
+            document.getElementById('str_2').value = pTag.toLowerCase();
+            document.getElementById('str_3').value = pTag.length;
+            document.getElementById('str_4').value = pTag.charAt(7);
+            document.getElementById('str_5').value = pTag.indexOf('p');
+            document.getElementById('str_6').value = pTag.lastIndexOf('m');
+            document.getElementById('str_7').value = pTag.substring(12,5);
+            document.getElementById('str_8').value = pTag.split(' ');
+        }
+    </script>
+</form>
+    <h1>Math</h1>
+    <button onclick="testMathObj();">연습</button>
+    <script>
+        let testMathObj = function(){
+            let str = "";
+            str += "floor : "+Math.floor(3.72)+"\n";
+            str+= "ceil : "+Math.ceil(3.14)+"\n";
+            str+="round : "+Math.round(3.14)+"\n";
+            str+="abs : "+Math.abs(-5)+"\n";
+            str+="pow : "+Math.pow(3,3)+"\n";
+            alert(str);
+        }
+    </script>
+
+
+
+</body>
+</html>
